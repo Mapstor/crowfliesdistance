@@ -106,8 +106,8 @@ export default function Home() {
           {/* Map */}
           <div className="mb-8">
             <Map
-              from={fromLocation}
-              to={toLocation}
+              from={fromLocation || undefined}
+              to={toLocation || undefined}
               onMapClick={handleMapClick}
               showAnimation={!!result}
             />

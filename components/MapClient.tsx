@@ -53,7 +53,7 @@ function MapViewController({ from, to }: { from?: any; to?: any }) {
 
 function AnimatedLine({ from, to, showAnimation }: { from: any; to: any; showAnimation?: boolean }) {
   const [progress, setProgress] = useState(0);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     if (!showAnimation) {
