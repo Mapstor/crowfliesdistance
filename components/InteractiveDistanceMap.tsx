@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { calculateDistance } from '@/lib/distance';
+import { haversineDistance } from '@/lib/distance';
 
 // Dynamically import the map to avoid SSR issues
 const MapClient = dynamic(() => import('./MapClient'), {
@@ -42,7 +42,7 @@ export default function InteractiveDistanceMap({ cityPairs, selectedIndex = 0 }:
   }, [selectedIndex]);
 
   const pair = cityPairs[currentPair];
-  const distance = calculateDistance(
+  const distance = haversineDistance(
     pair.coords1.lat,
     pair.coords1.lon,
     pair.coords2.lat,
