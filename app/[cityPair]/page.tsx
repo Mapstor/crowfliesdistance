@@ -1,8 +1,9 @@
 import { getCityBySlug, parsePairSlug } from '@/lib/cities';
 import { haversineDistance, calculateBearing, bearingToDirection, estimateFlightTime } from '@/lib/distance';
 import { notFound } from 'next/navigation';
+import Layout from '@/components/Layout';
 import Map from '@/components/Map';
-import Calculator from '@/components/Calculator';
+import CityPairCalculator from '@/components/CityPairCalculator';
 import RelatedDistances from '@/components/RelatedDistances';
 import FAQ from '@/components/FAQ';
 import type { Metadata } from 'next';
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: { cityPair: string }
+  params: Promise<{ cityPair: string }>
 }
 
 async function getRelatedDistances(currentCitySlug: string) {
@@ -52,7 +53,8 @@ function getDidYouKnowFact(cityA: string, cityB: string, miles: number): string 
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const parsed = parsePairSlug(params.cityPair);
+  const { cityPair } = await params;
+  const parsed = parsePairSlug(cityPair);
   if (!parsed) {
     return {
       title: 'Distance Calculator - CrowFliesDistance',
@@ -86,7 +88,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function CityPairPage({ params }: PageProps) {
-  const parsed = parsePairSlug(params.cityPair);
+  const { cityPair } = await params;
+  const parsed = parsePairSlug(cityPair);
   if (!parsed) notFound();
   
   const [cityA, cityB] = await Promise.all([
@@ -101,23 +104,14 @@ export default async function CityPairPage({ params }: PageProps) {
   const direction = bearingToDirection(bearing);
   const flightTime = estimateFlightTime(km);
   const didYouKnow = getDidYouKnowFact(cityA.name, cityB.name, miles);
-  const relatedDistances = await getRelatedDistances(params.cityPair);
+  const relatedDistances = await getRelatedDistances(cityPair);
 
   // Estimated driving distance (roughly 30% more than straight-line)
   const drivingDistance = Math.round(miles * 1.3);
 
   return (
-    <>
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-gray-900">🐦 CrowFliesDistance.com</a>
-          </div>
-        </div>
-      </header>
-
-      <main className="min-h-screen bg-gray-50">
+    <Layout>
+      <main>
         <div className="container mx-auto px-4 py-8">
           {/* Title */}
           <div className="text-center mb-8">
@@ -247,30 +241,11 @@ export default async function CityPairPage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto mb-8">
             <div className="bg-white rounded-lg shadow-lg p-6">
               <h2 className="text-xl font-bold mb-4">Calculate Another Distance</h2>
-              <Calculator 
-                onCalculate={(from, to) => {
-                  // This would navigate to the new city pair page
-                  if (from.name && to.name) {
-                    const fromSlug = from.name.split(',')[0].toLowerCase().replace(/\s+/g, '-');
-                    const toSlug = to.name.split(',')[0].toLowerCase().replace(/\s+/g, '-');
-                    const newPair = [fromSlug, toSlug].sort().join('-to-');
-                    window.location.href = `/${newPair}`;
-                  }
-                }} 
-              />
+              <CityPairCalculator />
             </div>
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-sm text-gray-400">
-            © 2024 CrowFliesDistance.com. All rights reserved.
-          </div>
-        </div>
-      </footer>
-    </>
+    </Layout>
   );
 }

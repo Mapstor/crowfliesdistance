@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CrowFliesDistance.com 🌍
 
-## Getting Started
+A comprehensive distance calculator that computes straight-line "as the crow flies" distances between any two points on Earth.
 
-First, run the development server:
+![CrowFliesDistance](https://crowfliesdistance.com/og-image.png)
 
+## ✨ Features
+
+- **🧭 Multiple Input Methods**: Search cities, use GPS location, or enter addresses
+- **🗺️ Interactive Map**: Click-to-calculate with visual route display
+- **📊 Comprehensive Results**: Distance, bearing, flight time, and detailed comparisons
+- **📱 Fully Responsive**: Optimized for desktop, tablet, and mobile
+- **🔍 SEO Optimized**: Rich structured data for search engines and AI
+- **📚 Educational Content**: 6 detailed blog posts about geography and distance
+- **⚡ Fast Performance**: Built with Next.js 15 and optimized for speed
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Maps**: Leaflet with OpenStreetMap
+- **Database**: JSON data files (cities, countries)
+- **Geocoding**: OpenStreetMap Nominatim API
+- **Deployment**: Vercel (recommended)
+
+## 🛠️ Development
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Setup
 ```bash
+# Clone repository
+git clone https://github.com/yourusername/crowfliesdistance.git
+cd crowfliesdistance
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open browser
+open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Available Scripts
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Quick Deploy to Vercel (Recommended)
+1. Push code to GitHub
+2. Go to [vercel.com](https://vercel.com) and import your repository
+3. Deploy automatically with zero configuration
 
-## Learn More
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions and other hosting options.
 
-To learn more about Next.js, take a look at the following resources:
+## 📊 SEO & Analytics
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Included SEO Features
+- ✅ Comprehensive meta tags and Open Graph
+- ✅ Structured data (Schema.org) for all page types
+- ✅ Dynamic sitemap.xml with 100+ city pairs
+- ✅ AI-friendly robots.txt
+- ✅ Google Analytics integration ready
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Setup Analytics (Optional)
+1. Get Google Analytics GA4 ID from [analytics.google.com](https://analytics.google.com)
+2. Replace placeholder in `components/Analytics.tsx`
+3. Add to environment variables: `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`
 
-## Deploy on Vercel
+## 🎯 API Endpoints
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/api/cities?q={query}` - Search cities
+- `/api/geocode?q={address}` - Geocode addresses  
+- `/sitemap.xml` - Dynamic sitemap
+- `/robots.txt` - Search engine instructions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+```
+crowfliesdistance/
+├── app/                    # Next.js app router pages
+│   ├── [cityPair]/        # Dynamic city pair pages
+│   ├── blog/              # Blog posts
+│   ├── api/               # API endpoints
+│   └── ...
+├── components/            # React components
+├── lib/                   # Utility functions and data
+└── public/               # Static assets (favicon, images)
+```
+
+## 🗃️ Data Sources
+
+- **Cities**: GeoNames database (15,000+ cities worldwide)
+- **Countries**: ISO country codes and names
+- **Maps**: OpenStreetMap
+- **Geocoding**: Nominatim (OpenStreetMap)
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+**Built with ❤️ for geography enthusiasts worldwide**

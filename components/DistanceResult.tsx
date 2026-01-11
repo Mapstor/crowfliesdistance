@@ -36,38 +36,34 @@ export default function DistanceResult({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-      <div className="mb-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+    <div className="bg-gradient-to-br from-white to-cyan-50/30 rounded-xl shadow-sm border border-cyan-100 p-5">
+      <div className="text-center">
+        <div className="text-xs uppercase tracking-wide text-cyan-600 mb-2">
           {fromName} → {toName}
-        </h2>
-      </div>
-
-      <div className="mb-6">
-        <div className="text-4xl font-bold text-blue-600 mb-2">
-          {miles.toLocaleString()} mi / {km.toLocaleString()} km
         </div>
-        <div className="text-lg text-gray-600">
-          Direction: {bearing.toFixed(0)}° ({direction})
+        
+        <div className="text-3xl font-light bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-1">
+          {miles.toLocaleString()} mi
+        </div>
+        <div className="text-lg text-gray-600 mb-3">
+          {km.toLocaleString()} km
+        </div>
+        
+        <div className="text-sm text-gray-500">
+          <span className="inline-flex items-center gap-1">
+            <span className="text-cyan-500">🧭</span> {bearing.toFixed(0)}° {direction}
+          </span>
         </div>
       </div>
 
       {shareUrl && (
-        <div className="border-t pt-4">
-          <div className="flex items-center gap-2 justify-center">
-            <input
-              type="text"
-              value={shareUrl}
-              readOnly
-              className="flex-1 p-2 bg-gray-50 border border-gray-200 rounded text-sm"
-            />
-            <button
-              onClick={handleCopyLink}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-            >
-              {copied ? '✓ Copied!' : 'Copy Link'}
-            </button>
-          </div>
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <button
+            onClick={handleCopyLink}
+            className="w-full px-3 py-2 text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg hover:from-cyan-600 hover:to-blue-700 transition-all shadow-sm hover:shadow-md"
+          >
+            {copied ? '✓ Link Copied' : 'Copy Share Link'}
+          </button>
         </div>
       )}
     </div>

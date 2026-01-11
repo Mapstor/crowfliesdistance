@@ -39,6 +39,7 @@ export function createPairSlug(cityA: string, cityB: string): string {
 }
 
 export function parsePairSlug(slug: string): { cityA: string; cityB: string } | null {
+  if (!slug || typeof slug !== 'string') return null;
   const parts = slug.split('-to-');
   if (parts.length !== 2) return null;
   return { cityA: parts[0], cityB: parts[1] };

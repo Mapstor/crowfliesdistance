@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <!-- Background -->
+  <rect width="16" height="16" rx="2" fill="#0891b2"/>
+  
+  <!-- Connecting line -->
+  <line x1="4" y1="8" x2="12" y2="8" stroke="white" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Point A -->
+  <circle cx="4" cy="8" r="2" fill="white"/>
+  <text x="4" y="10" text-anchor="middle" font-family="Arial, sans-serif" font-size="4" font-weight="bold" fill="#0891b2">A</text>
+  
+  <!-- Point B -->
+  <circle cx="12" cy="8" r="2" fill="white"/>
+  <text x="12" y="10" text-anchor="middle" font-family="Arial, sans-serif" font-size="4" font-weight="bold" fill="#0891b2">B</text>
+</svg>

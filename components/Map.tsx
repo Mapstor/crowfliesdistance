@@ -16,6 +16,7 @@ interface MapProps {
   to?: { lat: number; lon: number; name?: string };
   onMapClick?: (lat: number, lon: number) => void;
   showAnimation?: boolean;
+  distance?: { miles: number; km: number };
 }
 
 export default function Map(props: MapProps) {

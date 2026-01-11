@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="appleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891b2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="180" height="180" rx="40" fill="url(#appleGradient)"/>
+  
+  <!-- Connecting line (dashed to represent distance) -->
+  <line x1="45" y1="90" x2="135" y2="90" stroke="white" stroke-width="8" stroke-dasharray="12,6" opacity="0.9"/>
+  
+  <!-- Point A -->
+  <circle cx="45" cy="90" r="22" fill="white"/>
+  <text x="45" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0891b2">A</text>
+  
+  <!-- Point B -->
+  <circle cx="135" cy="90" r="22" fill="white"/>
+  <text x="135" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#2563eb">B</text>
+</svg>

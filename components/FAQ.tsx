@@ -64,22 +64,22 @@ export default function FAQ({ items = defaultFAQs }: FAQProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h2 className="text-xl font-light bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-3">
           {items.map((item, index) => (
-            <div key={index} className="border-b border-gray-200 last:border-0 pb-4 last:pb-0">
+            <div key={index} className="border-b border-gray-100 last:border-0 pb-4 last:pb-0">
               <button
                 onClick={() => toggleItem(index)}
-                className="w-full text-left flex justify-between items-start gap-4 hover:text-blue-600 transition-colors"
+                className="w-full text-left flex justify-between items-start gap-4 group"
               >
-                <h3 className="font-medium text-gray-800">{item.question}</h3>
-                <span className="text-gray-400 flex-shrink-0">
+                <h3 className="text-sm font-medium text-gray-700 group-hover:text-cyan-600 transition-colors">{item.question}</h3>
+                <span className="text-cyan-500 text-lg flex-shrink-0 transition-transform group-hover:scale-110">
                   {openIndex === index ? '−' : '+'}
                 </span>
               </button>
               {openIndex === index && (
-                <div className="mt-3 text-gray-600 leading-relaxed">
+                <div className="mt-2 text-sm text-gray-600 leading-relaxed">
                   {item.answer}
                 </div>
               )}
